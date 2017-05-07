@@ -38,8 +38,9 @@ public class MaximumDiversitySet {
 
             for (int n = 0; n < setLength; n++) {
                 line = setReader.readLine();
+                line = line.replaceAll(",", ".");
                 String[] splittedVector = line.split("\\s+");
-                if (splittedVector.length != setLength)
+                if (splittedVector.length != elementSize)
                     throw new IOException("Entry file does not have the correct syntax.");
                 ArrayList<Double> newElement = new ArrayList<>();
                 for (String value : splittedVector)
@@ -86,8 +87,8 @@ public class MaximumDiversitySet {
      * @throws IndexOutOfBoundsException When index is out of bounds.
      */
     public void addToSolution(int index) throws IndexOutOfBoundsException {
-        if ((index < 0) || (index >= getElementSize()))
-            throw new IndexOutOfBoundsException("Bad index trying to add an element to the solution.");
+        if ((index < 0) || (index >= set.size()))
+            throw new IndexOutOfBoundsException("Bad index (" + index + ") trying to add an element to the solution.");
         else
             solution.set(index, true);
     }
@@ -156,21 +157,73 @@ public class MaximumDiversitySet {
      */
     public int getFarthest(boolean general) {
         double distance = Double.NEGATIVE_INFINITY;
-        int indexOfFarest = -1;
+        int indexOfFarthest = -1;
         ArrayList<Double> gravityCenter;
         if (general)
             gravityCenter = generalGravityCenter();
         else
             gravityCenter = solutionGravityCenter();
 
-        // TODO no sabemos si se puede coger cualquier elemento o solo de entre los que no se calcula el centro de gravedad para el caso de que general sea false
         for (ArrayList<Double> element : set) {
-            if (euclideanDistance(element, gravityCenter) > distance) {
+            if ((euclideanDistance(element, gravityCenter) > distance)
+                    && (!isInSolution(set.indexOf(element)))) {
                 distance = euclideanDistance(element, gravityCenter);
-                indexOfFarest = set.indexOf(element);
+                indexOfFarthest = set.indexOf(element);
             }
         }
-        return indexOfFarest;
+        return indexOfFarthest;
+    }
+
+    /**
+     * Returns the current size of the solution.
+     * The number of true values in the solution ArrayList.
+     * @return
+     */
+    public int solutionSize() {
+        int size = 0;
+        for (Boolean value : solution)
+            if (value)
+                size++;
+        return size;
+    }
+
+    /**
+     * Checks if a certain element is in the solution.
+     * @param index Index of the element.
+     * @return True, if it is in the solution; false otherwise.
+     */
+    private boolean isInSolution(int index) {
+        return (solution.get(index));
+    }
+
+    /**
+     * Returns the diversity value of the current solution.
+     * @return
+     */
+    public double diversity() {
+        double diversity = 0.0;
+        for (int i = 0; i < set.size() - 1; i++) {
+            for (int j = i + 1; j < set.size(); j++) {
+                if ((solution.get(i)) && (solution.get(j)))
+                    diversity += euclideanDistance(set.get(i), set.get(j));
+            }
+        }
+        return diversity;
+    }
+
+    /**
+     * Prints the actual state of the problem.
+     */
+    public void print() {
+        System.out.println("=============================");
+        System.out.print("SOLUTION:  ");
+        for (ArrayList<Double> element : set) {
+            if (solution.get(set.indexOf(element)))
+                System.out.print(element + " ");
+        }
+        System.out.println();
+        System.out.println("DIVERSITY: " + diversity());
+        System.out.println("=============================");
     }
 
     /**
