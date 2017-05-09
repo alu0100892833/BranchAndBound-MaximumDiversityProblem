@@ -5,6 +5,7 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -181,6 +182,24 @@ public class MaximumDiversitySet {
             }
         }
         return indexOfFarthest;
+    }
+
+    /**
+     * This method allows to obtain the closest element to the given gravity center.
+     * @param gravityCenter Gravity Center.
+     * @return The index of the closest element.
+     */
+    public int getClosest(ArrayList<Double> gravityCenter) {
+        double distance = Double.POSITIVE_INFINITY;
+        int indexOfClosest = -1;
+        for (ArrayList<Double> element : set) {
+            if ((euclideanDistance(element, gravityCenter) < distance)
+                    && (getSolution().get(getSet().indexOf(element)))) {
+                distance = euclideanDistance(element, gravityCenter);
+                indexOfClosest = set.indexOf(element);
+            }
+        }
+        return indexOfClosest;
     }
 
     /**
