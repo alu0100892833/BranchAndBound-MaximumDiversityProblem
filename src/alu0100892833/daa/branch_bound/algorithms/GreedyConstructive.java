@@ -16,8 +16,9 @@ public class GreedyConstructive {
      * @param solutionSize Number of vectors in the solution.
      */
     public void solve(MaximumDiversitySet problem, int solutionSize) {
-        problem.addToSolution(problem.getFarthest(true));
+        problem.reset();
+        problem.addToSolution(problem.getFarthest(true, problem.getSolution()));
         while (problem.solutionSize() != solutionSize)
-            problem.addToSolution(problem.getFarthest(false));
+            problem.addToSolution(problem.getFarthest(false, problem.getSolution()));
     }
 }

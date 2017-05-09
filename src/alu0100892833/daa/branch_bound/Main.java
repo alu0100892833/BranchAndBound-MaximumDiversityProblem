@@ -1,5 +1,6 @@
 package alu0100892833.daa.branch_bound;
 
+import alu0100892833.daa.branch_bound.algorithms.Grasp;
 import alu0100892833.daa.branch_bound.algorithms.GreedyConstructive;
 import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 
@@ -7,8 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         MaximumDiversitySet problem = new MaximumDiversitySet(args[0]);
+
         GreedyConstructive greedyConstructiveSolution = new GreedyConstructive();
         greedyConstructiveSolution.solve(problem, 3);
+        problem.print();
+
+        Grasp graspSolution = new Grasp();
+        graspSolution.solve(problem, 3);
         problem.print();
     }
 }

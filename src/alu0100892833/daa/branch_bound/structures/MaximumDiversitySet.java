@@ -117,8 +117,8 @@ public class MaximumDiversitySet {
      * @throws IndexOutOfBoundsException When index is out of bounds.
      */
     public void removeFromSolution(int index) throws IndexOutOfBoundsException {
-        if ((index < 0) || (index >= getElementSize()))
-            throw new IndexOutOfBoundsException("Bad index trying to add an element to the solution.");
+        if ((index < 0) || (index >= set.size()))
+            throw new IndexOutOfBoundsException("Bad index (" + index + ") trying to add an element to the solution.");
         else
             solution.set(index, false);
     }
@@ -143,18 +143,18 @@ public class MaximumDiversitySet {
      * Obtain the gravity center of the elements that are part of the current solution.
      * @return Gravity Center, an ArrayList of Double, just like the other members of the set.
      */
-    public ArrayList<Double> solutionGravityCenter() {
-        int divisor = 0;
+    public ArrayList<Double> solutionGravityCenter() throws ArithmeticException {
+        if (solutionSize() == 0)
+            throw new ArithmeticException("No elements in the solution for calling solutionGravityCenter.");
         ArrayList<Double> gravityCenter = new ArrayList<>();
         for (int i = 0; i < getElementSize(); i++) {
             Double value = 0.0;
             for (ArrayList<Double> element : set) {
                 if (solution.get(set.indexOf(element))) {
                     value += element.get(i);
-                    divisor++;
                 }
             }
-            gravityCenter.add(value / divisor);
+            gravityCenter.add(value / solutionSize());
         }
         return gravityCenter;
     }
@@ -164,8 +164,7 @@ public class MaximumDiversitySet {
      * @param general If True, uses the general gravity center. If not, uses the solution gravity center.
      * @return The index of the farthest element.
      */
-    public int getFarthest(boolean general) {
-        // TODO AÑADIR EXCEPCIONES
+    public int getFarthest(boolean general, ArrayList<Boolean> exceptions) {
         double distance = Double.NEGATIVE_INFINITY;
         int indexOfFarthest = -1;
         ArrayList<Double> gravityCenter;
@@ -176,7 +175,7 @@ public class MaximumDiversitySet {
 
         for (ArrayList<Double> element : set) {
             if ((euclideanDistance(element, gravityCenter) > distance)
-                    && (!isInSolution(set.indexOf(element)))) {
+                    && (!exceptions.get(set.indexOf(element)))) {
                 distance = euclideanDistance(element, gravityCenter);
                 indexOfFarthest = set.indexOf(element);
             }
@@ -234,6 +233,14 @@ public class MaximumDiversitySet {
         System.out.println();
         System.out.println("DIVERSITY: " + diversity());
         System.out.println("=============================");
+    }
+
+    /**
+     * Resets the solution calculation.
+     */
+    public void reset() {
+        for (int i = 0; i < getSolution().size(); i++)
+            solution.set(i, false);
     }
 
     /**
