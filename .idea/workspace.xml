@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbb631a5-ea1f-4432-b01e-0205fe681199" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_15_2.txt" afterPath="$PROJECT_DIR$/file/max_div_15_2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_15_3.txt" afterPath="$PROJECT_DIR$/file/max_div_15_3.txt" />
@@ -10,8 +11,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_30_2.txt" afterPath="$PROJECT_DIR$/file/max_div_30_2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_30_3.txt" afterPath="$PROJECT_DIR$/file/max_div_30_3.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,67 +23,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MaximumDiversitySet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java">
+      <file leaf-file-name="BranchAndBound.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="202" column="5" lean-forward="true" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GreedyConstructive.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GreedyDestructive.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="65" lean-forward="false" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Grasp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="38" column="77" lean-forward="false" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="77" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalSearch.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/LocalSearch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="918">
+              <caret line="51" column="73" lean-forward="false" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,9 +70,10 @@
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/LocalSearch.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java" />
-        <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java" />
+        <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" />
+        <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
       </list>
     </option>
   </component>
@@ -654,7 +608,7 @@
       <workItem from="1494235783373" duration="35000" />
       <workItem from="1494316910849" duration="2566000" />
       <workItem from="1494352724612" duration="12000" />
-      <workItem from="1494352788969" duration="5306000" />
+      <workItem from="1494352788969" duration="5595000" />
     </task>
     <task id="LOCAL-00001" summary="Started (and finished?) the Greedy Constructive Algorithm class.">
       <created>1494159937734</created>
@@ -684,11 +638,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494357006072</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished Greedy Destructive.">
+      <created>1494358196558</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1494358196558</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16099000" />
+    <option name="totallyTimeSpent" value="16388000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -736,7 +697,8 @@
     <MESSAGE value="Local Search done." />
     <MESSAGE value="Adding file/" />
     <MESSAGE value="Finished with local search and GRASP. Also corrected GreedyConstructive." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished with local search and GRASP. Also corrected GreedyConstructive." />
+    <MESSAGE value="Finished Greedy Destructive." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Greedy Destructive." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -952,16 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="77" lean-forward="false" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/LocalSearch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -970,21 +922,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="432">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java">
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="684">
+          <caret line="38" column="77" lean-forward="false" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -998,10 +960,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java">
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="65" lean-forward="false" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
+        <state relative-caret-position="108">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="51" column="73" lean-forward="false" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

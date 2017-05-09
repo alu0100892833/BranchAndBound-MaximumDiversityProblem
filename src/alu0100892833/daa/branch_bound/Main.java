@@ -8,19 +8,47 @@ import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 public class Main {
 
     public static void main(String[] args) {
-        int solutionSize = 3;
+        int minSolutionSize = 2;
+        int maxSolutionSize = 5;
         MaximumDiversitySet problem = new MaximumDiversitySet(args[0]);
 
-        GreedyConstructive greedyConstructiveSolution = new GreedyConstructive();
-        greedyConstructiveSolution.solve(problem, solutionSize);
-        problem.print();
+        for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
+            System.out.println("==========================================");
+            System.out.println("GREEDY CONSTRUCTIVE WITH M = " + i);
+            GreedyConstructive greedyConstructiveSolution = new GreedyConstructive();
+            greedyConstructiveSolution.solve(problem, i);
+            problem.print();
+            System.out.println();
+        }
 
-        GreedyDestructive greedyDestructive = new GreedyDestructive();
-        greedyDestructive.solve(problem, solutionSize);
-        problem.print();
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
 
-        Grasp graspSolution = new Grasp();
-        graspSolution.solve(problem, solutionSize);
-        problem.print();
+        for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
+            System.out.println("==========================================");
+            System.out.println("GREEDY DESTRUCTIVE WITH M = " + i);
+            GreedyDestructive greedyDestructive = new GreedyDestructive();
+            greedyDestructive.solve(problem, i);
+            problem.print();
+            System.out.println();
+        }
+
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+
+        for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
+            System.out.println("==========================================");
+            System.out.println("GRASP WITH M = " + i);
+            Grasp graspSolution = new Grasp();
+            graspSolution.solve(problem, i);
+            problem.print();
+            System.out.println();
+        }
+
+        System.out.println("==========================================");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
     }
 }
