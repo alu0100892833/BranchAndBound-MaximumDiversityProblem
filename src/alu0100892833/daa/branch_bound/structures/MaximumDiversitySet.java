@@ -164,7 +164,7 @@ public class MaximumDiversitySet {
      * @param general If True, uses the general gravity center. If not, uses the solution gravity center.
      * @return The index of the farthest element.
      */
-    public int getFarthest(boolean general, ArrayList<Boolean> exceptions) {
+    public int getFarthest(boolean general) {
         // TODO AÑADIR EXCEPCIONES
         double distance = Double.NEGATIVE_INFINITY;
         int indexOfFarthest = -1;
