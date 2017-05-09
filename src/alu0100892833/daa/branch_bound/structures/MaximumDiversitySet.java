@@ -53,6 +53,12 @@ public class MaximumDiversitySet {
         }
     }
 
+    public MaximumDiversitySet(MaximumDiversitySet copy) {
+        this.set = new ArrayList<>(copy.getSet());
+        this.solution = new ArrayList<>(copy.getSolution());
+        this.elementSize = copy.getElementSize();
+    }
+
     public ArrayList<ArrayList<Double>> getSet() {
         return set;
     }
@@ -128,7 +134,7 @@ public class MaximumDiversitySet {
             for (ArrayList<Double> element : set) {
                 value += element.get(i);
             }
-            gravityCenter.add(value);
+            gravityCenter.add(value / getSet().size());
         }
         return gravityCenter;
     }
@@ -138,14 +144,17 @@ public class MaximumDiversitySet {
      * @return Gravity Center, an ArrayList of Double, just like the other members of the set.
      */
     public ArrayList<Double> solutionGravityCenter() {
+        int divisor = 0;
         ArrayList<Double> gravityCenter = new ArrayList<>();
         for (int i = 0; i < getElementSize(); i++) {
             Double value = 0.0;
             for (ArrayList<Double> element : set) {
-                if (solution.get(set.indexOf(element)))
+                if (solution.get(set.indexOf(element))) {
                     value += element.get(i);
+                    divisor++;
+                }
             }
-            gravityCenter.add(value);
+            gravityCenter.add(value / divisor);
         }
         return gravityCenter;
     }
@@ -155,7 +164,8 @@ public class MaximumDiversitySet {
      * @param general If True, uses the general gravity center. If not, uses the solution gravity center.
      * @return The index of the farthest element.
      */
-    public int getFarthest(boolean general) {
+    public int getFarthest(boolean general, ArrayList<Boolean> exceptions) {
+        // TODO AÑADIR EXCEPCIONES
         double distance = Double.NEGATIVE_INFINITY;
         int indexOfFarthest = -1;
         ArrayList<Double> gravityCenter;
@@ -177,7 +187,7 @@ public class MaximumDiversitySet {
     /**
      * Returns the current size of the solution.
      * The number of true values in the solution ArrayList.
-     * @return
+     * @return Size of the solution.
      */
     public int solutionSize() {
         int size = 0;
@@ -192,13 +202,13 @@ public class MaximumDiversitySet {
      * @param index Index of the element.
      * @return True, if it is in the solution; false otherwise.
      */
-    private boolean isInSolution(int index) {
+    public boolean isInSolution(int index) {
         return (solution.get(index));
     }
 
     /**
      * Returns the diversity value of the current solution.
-     * @return
+     * @return Diversity of the current solution
      */
     public double diversity() {
         double diversity = 0.0;

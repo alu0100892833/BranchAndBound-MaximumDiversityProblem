@@ -13,13 +13,11 @@ public class GreedyConstructive {
     /**
      * Solves the Maximum Diversity Problem for the given set. Uses a greedy constructive algorithm.
      * @param problem MaximumDiversitySet for the problem.
-     * @return The ArrayList of Boolean that details the solution.
+     * @param solutionSize Number of vectors in the solution.
      */
-    public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize) {
+    public void solve(MaximumDiversitySet problem, int solutionSize) {
         problem.addToSolution(problem.getFarthest(true));
         while (problem.solutionSize() != solutionSize)
             problem.addToSolution(problem.getFarthest(false));
-
-        return problem;
     }
 }

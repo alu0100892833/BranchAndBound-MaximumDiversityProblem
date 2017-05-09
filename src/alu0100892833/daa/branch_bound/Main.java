@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         MaximumDiversitySet problem = new MaximumDiversitySet(args[0]);
         GreedyConstructive greedyConstructiveSolution = new GreedyConstructive();
-        MaximumDiversitySet solvedGreedy = greedyConstructiveSolution.solve(problem, 3);
-        solvedGreedy.print();
+        greedyConstructiveSolution.solve(problem, 3);
+        problem.print();
     }
 }
