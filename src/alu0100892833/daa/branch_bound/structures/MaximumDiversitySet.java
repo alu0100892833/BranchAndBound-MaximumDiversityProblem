@@ -262,6 +262,16 @@ public class MaximumDiversitySet {
             solution.set(i, false);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof MaximumDiversitySet))
+            return false;
+        MaximumDiversitySet otherSet = (MaximumDiversitySet) obj;
+        if ((getSolution().equals(otherSet.getSolution())) && (getSet().equals(otherSet.getSet())))
+            return true;
+        return false;
+    }
+
     /**
      * Static method that calculates the euclidean distance between two vectors.
      * If these vectors have different dimensions, distance cannot be calculated.

@@ -54,4 +54,14 @@ public class BABNode {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BABNode))
+            return false;
+        BABNode compare = (BABNode) obj;
+        if (this.getSet().equals(compare.getSet()))
+            return true;
+        return false;
+    }
 }

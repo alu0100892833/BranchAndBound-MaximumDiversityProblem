@@ -10,4 +10,8 @@ public class BABTree {
     public BABTree(MaximumDiversitySet set) {
         origin = new BABNode(set);
     }
+
+    public BABNode getOrigin() {
+        return this.origin;
+    }
 }
