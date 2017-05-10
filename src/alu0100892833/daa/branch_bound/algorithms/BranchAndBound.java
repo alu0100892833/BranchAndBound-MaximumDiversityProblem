@@ -20,56 +20,121 @@ public class BranchAndBound {
 
     private MaximumDiversitySet bestFound;
     private BABTree tree;
-    private int exploreStrategy;
+    private int exploreStrategy, solutionSize;
     private HashSet<BABNode> alreadyExpanded;
 
-
+    /**
+     * This method solves the problem using a Branch and Bound algorithm.
+     * @param problem
+     * @param solutionSize
+     * @param algorithm
+     * @param exploreStrategy
+     * @return
+     */
     public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, int algorithm, int exploreStrategy) {
+        clean();
         this.exploreStrategy = exploreStrategy;
+        this.solutionSize = solutionSize;
         alreadyExpanded = new HashSet<>();
 
-        initialQuota(problem, solutionSize, algorithm);
-        System.out.print("Initial quota : ");
+        initialQuota(problem, algorithm);
+        System.out.println("Initial quota : ");
         problem.print();
         bestFound = problem;
 
         MaximumDiversitySet startingSet = new MaximumDiversitySet(problem);
-        for (int i = 0; i < startingSet.solutionSize(); i++) {
+        for (int i = 0; i < startingSet.getSolution().size(); i++) {
             startingSet.getSolution().set(i, false);
         }
-
         tree = new BABTree(startingSet);
-        branchOut(tree.getOrigin(), solutionSize);
+        branchOut(tree.getOrigin());
         return bestFound;
     }
 
-    public void branchOut(BABNode set, int solutionSize) {
+    /**
+     * Branches out the given node, and explores its sons, grand-sons...
+     * @param set
+     */
+    public void branchOut(BABNode set) {
         alreadyExpanded.add(set);
         if (set.getSet().solutionSize() != solutionSize) {
             set.generateSons();
-            for (BABNode son : set.getLinks()) {
-                if (worthy(son))
-                    branchOut(son, solutionSize);
-            }
+            if (exploreStrategy == DEPTH_FIRST)
+                exploreDepthFirst(set);
+            else if (exploreStrategy == SMALLEST_SUPERIOR_QUOTE)
+                exploreUsingSmallerSuperiorQuote(set);
+            else if (exploreStrategy == BIGGEST_SUPERIOR_QUOTE)
+                exploreUsingBiggestSuperiorQuote(set);
+
         } else {
             if (bestFound.diversity() < set.getSet().diversity())
                 bestFound = set.getSet();
         }
     }
 
+    /**
+     * Check if a node is worth branching. If it has already been visited, it is not worthy.
+     * @param node
+     * @return True or false, if it is, or not, worth exploring.
+     */
     public boolean worthy(BABNode node) {
         if (alreadyExpanded.contains(node))
             return false;
+        else if (node.getFather() == null)
+            return true;
+
+        int adding = -1;
+        for (int i = 0; i < node.getSet().getSolution().size(); i++) {
+            if ((node.getSet().getSolution().get(i))
+                && (!node.getFather().getSet().getSolution().get(i))) {
+                adding = i;
+                break;
+            }
+        }
+
+        for (int i = 0; i < node.getFather().getSet().getSolution().size(); i++) {
+            if (!node.getSet().getSolution().get(i)) {
+                if (node.getSet().minDistance(i) > node.getSet().maxDistance(adding))
+                    return false;
+            }
+        }
+
         return true;
+    }
+
+    /**
+     * Continue exploring a node with depth first method.
+     * @param currentNode
+     */
+    private void exploreDepthFirst(BABNode currentNode) {
+        for (BABNode son : currentNode.getLinks()) {
+            if (worthy(son))
+                branchOut(son);
+        }
+    }
+
+    /**
+     * Continue exploring using the smaller superior quote as preferred.
+     * @param currentNode
+     */
+    private void exploreUsingSmallerSuperiorQuote(BABNode currentNode) {
+
+    }
+
+    /**
+     * Continue exploring using the biggest superior quote as preferred.
+     * @param currentNode
+     */
+    private void exploreUsingBiggestSuperiorQuote(BABNode currentNode) {
+
     }
 
     /**
      * Creates an initial quota using the specified algorithm.
      * @param problem
-     * @param solutionSize
      * @param algorithm
      */
-    private void initialQuota(MaximumDiversitySet problem, int solutionSize, int algorithm) throws IllegalArgumentException {
+    private void initialQuota(MaximumDiversitySet problem, int algorithm) throws IllegalArgumentException {
         if (algorithm == GREEDY_CONSTRUCTIVE) {
             GreedyConstructive greedy = new GreedyConstructive();
             greedy.solve(problem, solutionSize);
@@ -81,5 +146,20 @@ public class BranchAndBound {
             grasp.solve(problem, solutionSize);
         } else
             throw new IllegalArgumentException("Did not recognize algorithm.");
+    }
+
+    /**
+     * Cleans everything so we can start again or clean memory.
+     */
+    public void clean() {
+        if (bestFound != null)
+            bestFound.reset();
+        bestFound = null;
+        if (tree != null)
+            tree.clear();
+        tree = null;
+        if (alreadyExpanded != null)
+            alreadyExpanded.clear();
+        alreadyExpanded = null;
     }
 }

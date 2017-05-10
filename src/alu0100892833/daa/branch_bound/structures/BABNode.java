@@ -60,8 +60,14 @@ public class BABNode {
         if (!(obj instanceof BABNode))
             return false;
         BABNode compare = (BABNode) obj;
-        if (this.getSet().equals(compare.getSet()))
-            return true;
-        return false;
+        return (this.getSet().equals(compare.getSet()));
+    }
+
+    public void clear() {
+        set.reset();
+        set = null;
+        father = null;
+        links.clear();
+        links = null;
     }
 }

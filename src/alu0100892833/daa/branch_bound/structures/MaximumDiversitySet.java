@@ -262,6 +262,35 @@ public class MaximumDiversitySet {
             solution.set(i, false);
     }
 
+    /**
+     * Returns the maximum distance between the given element and any other.
+     * @param index
+     * @return
+     */
+    public double maxDistance(int index) {
+        double distance = Double.NEGATIVE_INFINITY;
+        for (int i = 0; i < getSet().size(); i++) {
+            if (euclideanDistance(getSet().get(i), getSet().get(index)) > distance)
+                distance = euclideanDistance(getSet().get(i), getSet().get(index));
+        }
+        return distance;
+    }
+
+    /**
+     * Returns the minimum distance between the given element and any other, excluding itself.
+     * @param index
+     * @return
+     */
+    public double minDistance(int index) {
+        double distance = Double.POSITIVE_INFINITY;
+        for (int i = 0; i < getSet().size(); i++) {
+            if ((euclideanDistance(getSet().get(i), getSet().get(index)) < distance)
+                    && (i != index))
+                distance = euclideanDistance(getSet().get(i), getSet().get(index));
+        }
+        return distance;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof MaximumDiversitySet))

@@ -14,4 +14,8 @@ public class BABTree {
     public BABNode getOrigin() {
         return this.origin;
     }
+
+    public void clear() {
+        origin.clear();
+    }
 }
