@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbb631a5-ea1f-4432-b01e-0205fe681199" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/RamificaciónAcotación.pdf" afterPath="$PROJECT_DIR$/docs/RamificaciónAcotación.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/Informe.pages" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_15_2.txt" afterPath="$PROJECT_DIR$/file/max_div_15_2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_15_3.txt" afterPath="$PROJECT_DIR$/file/max_div_15_3.txt" />
@@ -10,12 +10,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_20_3.txt" afterPath="$PROJECT_DIR$/file/max_div_20_3.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_30_2.txt" afterPath="$PROJECT_DIR$/file/max_div_30_2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file/max_div_30_3.txt" afterPath="$PROJECT_DIR$/file/max_div_30_3.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABNode.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +37,8 @@
       <file leaf-file-name="BABMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -242,6 +236,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="algorithms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BranchAndBound" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BranchAndBound" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -884,11 +892,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494531400433</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Corrected GRASP. Now everything is ready except for the superior quotes, which might end up being just like using BIGGEST_VALUE.">
+      <created>1494536240008</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1494536240008</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35451000" />
+    <option name="totallyTimeSpent" value="35953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -963,7 +978,8 @@
     <MESSAGE value="Created BAB basic structures BABNode and BABTree." />
     <MESSAGE value="Maybe finished with BAB, but probably not." />
     <MESSAGE value="Now the BABTree can be explored following the node with the highest diversity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Now the BABTree can be explored following the node with the highest diversity." />
+    <MESSAGE value="Corrected GRASP. Now everything is ready except for the superior quotes, which might end up being just like using BIGGEST_VALUE." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected GRASP. Now everything is ready except for the superior quotes, which might end up being just like using BIGGEST_VALUE." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1452,8 +1468,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
