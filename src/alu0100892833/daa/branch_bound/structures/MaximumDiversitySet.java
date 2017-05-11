@@ -54,6 +54,10 @@ public class MaximumDiversitySet {
         }
     }
 
+    /**
+     * Copy constructor.
+     * @param copy
+     */
     public MaximumDiversitySet(MaximumDiversitySet copy) {
         this.set = new ArrayList<>(copy.getSet());
         this.solution = new ArrayList<>(copy.getSolution());
@@ -66,6 +70,10 @@ public class MaximumDiversitySet {
 
     public ArrayList<Boolean> getSolution() {
         return solution;
+    }
+
+    public void setSolution(ArrayList<Boolean> solution) {
+        this.solution = new ArrayList<>(solution);
     }
 
     /**
@@ -263,14 +271,29 @@ public class MaximumDiversitySet {
     }
 
     /**
+     * Cleans all data.
+     */
+    public void clear() {
+        if (set != null) {
+            set.clear();
+        }
+        if (solution != null) {
+            solution.clear();
+        }
+    }
+
+    /**
      * Returns the maximum distance between the given element and any other.
      * @param index
      * @return
      */
     public double maxDistance(int index) {
+        if ((solutionSize() == 0) || ((solutionSize() == 1) && (getSolution().get(index))))
+            return Double.POSITIVE_INFINITY;
         double distance = Double.NEGATIVE_INFINITY;
         for (int i = 0; i < getSet().size(); i++) {
-            if (euclideanDistance(getSet().get(i), getSet().get(index)) > distance)
+            if ((euclideanDistance(getSet().get(i), getSet().get(index)) > distance)
+                    && ((getSolution().get(i))) && (index != i))
                 distance = euclideanDistance(getSet().get(i), getSet().get(index));
         }
         return distance;
@@ -282,13 +305,24 @@ public class MaximumDiversitySet {
      * @return
      */
     public double minDistance(int index) {
+        if (solutionSize() == 0)
+            return Double.NEGATIVE_INFINITY;
         double distance = Double.POSITIVE_INFINITY;
         for (int i = 0; i < getSet().size(); i++) {
             if ((euclideanDistance(getSet().get(i), getSet().get(index)) < distance)
-                    && (i != index))
+                    && (i != index) && (getSolution().get(i)))
                 distance = euclideanDistance(getSet().get(i), getSet().get(index));
         }
         return distance;
+    }
+
+    /**
+     * Alters the solution to be equal to the given by other MaximumDiversitySet.
+     * @param other
+     */
+    public void setAs(MaximumDiversitySet other) {
+        if (other.getSet().equals(getSet()))
+            setSolution(other.getSolution());
     }
 
     @Override

@@ -5,11 +5,13 @@ import alu0100892833.daa.branch_bound.structures.BABNode;
 import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 
 import java.util.HashSet;
-import java.util.ArrayList;
-
 
 /**
- *
+ * This class has all necessary methods to solve a Maximum Diversity problem using a Branch and Bound algorithms.
+ * It provides several options such as selecting how to generate the initial solution or how to explore the tree.
+ * It uses BABNode and BABTree objects to represent its data structures.
+ * @author Óscar Darias Plasencia
+ * @since 10-9-2017
  */
 public class BranchAndBound {
     public static final int GREEDY_CONSTRUCTIVE = 0;
@@ -18,6 +20,7 @@ public class BranchAndBound {
     public static final int SMALLEST_SUPERIOR_QUOTE = 4;
     public static final int BIGGEST_VALUE = 5;
     public static final int GRASP = 2;
+    private static final int GRASP_ITERATIONS = 10;
 
     private MaximumDiversitySet bestFound;
     private BABTree tree;
@@ -34,13 +37,14 @@ public class BranchAndBound {
      */
     public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, int algorithm, int exploreStrategy) {
         clean();
+        long initialTime = System.currentTimeMillis();
         this.exploreStrategy = exploreStrategy;
         this.solutionSize = solutionSize;
         alreadyExpanded = new HashSet<>();
 
         initialQuota(problem, algorithm);
-        System.out.println("Initial quota : ");
-        problem.print();
+        //System.out.println("INITIAL SOLUTION: ");
+        //problem.print();
         bestFound = problem;
 
         MaximumDiversitySet startingSet = new MaximumDiversitySet(problem);
@@ -49,7 +53,9 @@ public class BranchAndBound {
         }
         tree = new BABTree(startingSet);
         branchOut(tree.getOrigin());
-        return bestFound;
+        long finalTime = System.currentTimeMillis();
+        System.out.print("Necessary time: " + (finalTime - initialTime) + " milliseconds");
+        return new MaximumDiversitySet(bestFound);
     }
 
     /**
@@ -138,7 +144,8 @@ public class BranchAndBound {
                 }
             }
             if (index != -1) {
-                branchOut(currentNode.getLinks().get(index));
+                if (worthy(currentNode.getLinks().get(index)))
+                    branchOut(currentNode.getLinks().get(index));
                 branched.add(index);
             }
         }
@@ -158,7 +165,7 @@ public class BranchAndBound {
             greedy.solve(problem, solutionSize);
         } else if (algorithm == GRASP) {
             Grasp grasp = new Grasp();
-            grasp.solve(problem, solutionSize);
+            grasp.solve(problem, solutionSize, GRASP_ITERATIONS);
         } else
             throw new IllegalArgumentException("Did not recognize algorithm.");
     }

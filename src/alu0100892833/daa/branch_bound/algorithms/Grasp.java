@@ -18,17 +18,23 @@ public class Grasp {
      * @param problem MaximumDiversitySet that represents the problem.
      * @param solutionSize The number of elements in the solution.
      */
-    public void solve(MaximumDiversitySet problem, int solutionSize) {
+    public void solve(MaximumDiversitySet problem, int solutionSize, int times) {
         problem.reset();
-        problem.addToSolution(problem.getFarthest(true, problem.getSolution()));
-        while (problem.solutionSize() != solutionSize) {
-            ArrayList<Integer> rcl = generateRCL(problem,
-                    new ArrayList<>(problem.getSolution()), DEFAULT_RCL_SIZE);
-            Random selector = new Random();
-            problem.addToSolution(rcl.get(selector.nextInt(rcl.size())));
+        MaximumDiversitySet tries = new MaximumDiversitySet(problem);
+        for (int i = 0; i < times; i++) {
+            tries.reset();
+            tries.addToSolution(tries.getFarthest(true, tries.getSolution()));
+            while (tries.solutionSize() != solutionSize) {
+                ArrayList<Integer> rcl = generateRCL(tries,
+                        new ArrayList<>(tries.getSolution()), DEFAULT_RCL_SIZE);
+                Random selector = new Random();
+                tries.addToSolution(rcl.get(selector.nextInt(rcl.size())));
+            }
+            LocalSearch improve = new LocalSearch();
+            improve.perform(tries);
+            if (tries.diversity() > problem.diversity())
+                problem.setAs(tries);
         }
-        LocalSearch improve = new LocalSearch();
-        improve.perform(problem);
     }
 
     /**
