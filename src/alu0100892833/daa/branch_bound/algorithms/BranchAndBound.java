@@ -5,6 +5,7 @@ import alu0100892833.daa.branch_bound.structures.BABNode;
 import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 
 import java.util.HashSet;
+import java.util.ArrayList;
 
 
 /**
@@ -15,7 +16,7 @@ public class BranchAndBound {
     public static final int GREEDY_DESTRUCTIVE = 1;
     public static final int DEPTH_FIRST = 3;
     public static final int SMALLEST_SUPERIOR_QUOTE = 4;
-    public static final int BIGGEST_SUPERIOR_QUOTE = 5;
+    public static final int BIGGEST_VALUE = 5;
     public static final int GRASP = 2;
 
     private MaximumDiversitySet bestFound;
@@ -63,8 +64,8 @@ public class BranchAndBound {
                 exploreDepthFirst(set);
             else if (exploreStrategy == SMALLEST_SUPERIOR_QUOTE)
                 exploreUsingSmallerSuperiorQuote(set);
-            else if (exploreStrategy == BIGGEST_SUPERIOR_QUOTE)
-                exploreUsingBiggestSuperiorQuote(set);
+            else if (exploreStrategy == BIGGEST_VALUE)
+                exploreByHighestValue(set);
 
         } else {
             if (bestFound.diversity() < set.getSet().diversity())
@@ -122,11 +123,25 @@ public class BranchAndBound {
     }
 
     /**
-     * Continue exploring using the biggest superior quote as preferred.
+     * Continue exploring using the node with the highest diversity as preferred.
      * @param currentNode
      */
-    private void exploreUsingBiggestSuperiorQuote(BABNode currentNode) {
-
+    private void exploreByHighestValue(BABNode currentNode) {
+        HashSet<Integer> branched = new HashSet<>();
+        while (branched.size() != currentNode.getLinks().size()) {
+            double highestValue = Double.NEGATIVE_INFINITY;
+            int index = -1;
+            for (int i = 0; i < currentNode.getLinks().size(); i++) {
+                if ((!branched.contains(i)) && (currentNode.getLinks().get(i).getSet().diversity() > highestValue)) {
+                    highestValue = currentNode.getLinks().get(i).getSet().diversity();
+                    index = i;
+                }
+            }
+            if (index != -1) {
+                branchOut(currentNode.getLinks().get(index));
+                branched.add(index);
+            }
+        }
     }
 
     /**
