@@ -3,6 +3,7 @@ package alu0100892833.daa.branch_bound;
 import alu0100892833.daa.branch_bound.algorithms.Grasp;
 import alu0100892833.daa.branch_bound.algorithms.GreedyConstructive;
 import alu0100892833.daa.branch_bound.algorithms.GreedyDestructive;
+import alu0100892833.daa.branch_bound.algorithms.LocalSearch;
 import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 
 public class Main {
