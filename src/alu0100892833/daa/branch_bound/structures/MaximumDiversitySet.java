@@ -87,7 +87,9 @@ public class MaximumDiversitySet {
     /**
      * Adds a new element of the set to the solution, setting its value to true.
      * @param component New element that is going to be part of the solution.
+     * @deprecated
      */
+    @Deprecated
     public void addToSolution(ArrayList<Double> component) throws InvalidArgumentException {
         int index = set.indexOf(component);
         if (index != -1)
@@ -111,7 +113,9 @@ public class MaximumDiversitySet {
     /**
      * Removes the specified component from the solution, setting its value to false.
      * @param component The element that is going to be retired from the solution.
+     * @deprecated
      */
+    @Deprecated
     public void removeFromSolution(ArrayList<Double> component) throws InvalidArgumentException {
         int index = set.indexOf(component);
         if (index != -1)
