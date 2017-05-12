@@ -17,8 +17,7 @@ public class BranchAndBound {
     public static final int GREEDY_CONSTRUCTIVE = 0;
     public static final int GREEDY_DESTRUCTIVE = 1;
     public static final int DEPTH_FIRST = 3;
-    public static final int SMALLEST_SUPERIOR_QUOTE = 4;
-    public static final int BIGGEST_VALUE = 5;
+    public static final int SMALLEST_SUPERIOR_QUOTE = 5;
     public static final int GRASP = 2;
     private static final int GRASP_ITERATIONS = 10;
 
@@ -29,11 +28,13 @@ public class BranchAndBound {
 
     /**
      * This method solves the problem using a Branch and Bound algorithm.
-     * @param problem
-     * @param solutionSize
-     * @param algorithm
-     * @param exploreStrategy
-     * @return
+     * @param problem Represents the problem to solve.
+     * @param solutionSize Size of the solution.
+     * @param algorithm Specifies what algorithm to use for the initial lower quote. It should be BranchAndBound.GREEDY_CONSTRUCTIVE,
+     *                  BranchAndBound.GREEDY_DESTRUCTIVE or BranchAndBound.GRASP.
+     * @param exploreStrategy Specifies the strategy for exploring the tree. It should be BranchAndBound.DEPTH_FIRST o
+     *                        BranchAndBound.SMALLER_SUPERIOR_QUOTE.
+     * @return The MaximumDiversitySet with the final solution.
      */
     public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, int algorithm, int exploreStrategy) {
         clean();
@@ -69,8 +70,6 @@ public class BranchAndBound {
             if (exploreStrategy == DEPTH_FIRST)
                 exploreDepthFirst(set);
             else if (exploreStrategy == SMALLEST_SUPERIOR_QUOTE)
-                exploreUsingSmallerSuperiorQuote(set);
-            else if (exploreStrategy == BIGGEST_VALUE)
                 exploreByHighestValue(set);
 
         } else {
@@ -118,14 +117,6 @@ public class BranchAndBound {
             if (worthy(son))
                 branchOut(son);
         }
-    }
-
-    /**
-     * Continue exploring using the smaller superior quote as preferred.
-     * @param currentNode
-     */
-    private void exploreUsingSmallerSuperiorQuote(BABNode currentNode) {
-
     }
 
     /**
