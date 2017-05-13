@@ -20,6 +20,7 @@ public class MaximumDiversitySet {
     private ArrayList<ArrayList<Double>> set;
     private ArrayList<Boolean> solution;
     private int elementSize;
+    private String filename;
 
     /**
      * Constructor that builds a set from a file.
@@ -27,6 +28,7 @@ public class MaximumDiversitySet {
      * @param filename Name of the file containing the set.
      */
     public MaximumDiversitySet(String filename) {
+        this.filename = filename.replaceAll("file/", "");
         BufferedReader setReader;
         set = new ArrayList<>();
         solution = new ArrayList<>();
@@ -59,6 +61,7 @@ public class MaximumDiversitySet {
      * @param copy
      */
     public MaximumDiversitySet(MaximumDiversitySet copy) {
+        this.filename = copy.filename;
         this.set = new ArrayList<>(copy.getSet());
         this.solution = new ArrayList<>(copy.getSolution());
         this.elementSize = copy.getElementSize();
@@ -66,6 +69,10 @@ public class MaximumDiversitySet {
 
     public ArrayList<ArrayList<Double>> getSet() {
         return set;
+    }
+
+    public String getFilename() {
+        return filename;
     }
 
     public ArrayList<Boolean> getSolution() {
@@ -264,6 +271,19 @@ public class MaximumDiversitySet {
         System.out.println();
         System.out.println("DIVERSITY: " + diversity());
         System.out.println("=============================");
+    }
+
+    /**
+     * Prints just the solution.
+     * @return String with the solution set.
+     */
+    public String printSolution() {
+        String output = "";
+        for (ArrayList<Double> element : set) {
+            if (solution.get(set.indexOf(element)))
+                output += element + " ";
+        }
+        return output;
     }
 
     /**

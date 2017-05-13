@@ -4,6 +4,11 @@ import alu0100892833.daa.branch_bound.structures.BABTree;
 import alu0100892833.daa.branch_bound.structures.BABNode;
 import alu0100892833.daa.branch_bound.structures.MaximumDiversitySet;
 
+import java.io.BufferedWriter;
+import java.io.File;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashSet;
 
 /**
@@ -14,16 +19,20 @@ import java.util.HashSet;
  * @since 10-9-2017
  */
 public class BranchAndBound {
-    public static final int GREEDY_CONSTRUCTIVE = 0;
-    public static final int GREEDY_DESTRUCTIVE = 1;
-    public static final int DEPTH_FIRST = 3;
-    public static final int SMALLEST_SUPERIOR_QUOTE = 5;
-    public static final int GRASP = 2;
+    public static final String GREEDY_CONSTRUCTIVE = "GreedyConstructive";
+    public static final String GREEDY_DESTRUCTIVE = "GreedyDestructive";
+    public static final String DEPTH_FIRST = "DEPTH-FIRST";
+    public static final String SMALLEST_SUPERIOR_QUOTE = "SMALLEST-SUPERIOR-QUOTE";
+    public static final String GRASP = "GRASP";
     private static final int GRASP_ITERATIONS = 10;
+    private static final String OUTPUT_FILE = "BABResults";
+    private static final String OUTPUT_FILE_EXTENSION = ".csv";
+    private static final String FILE_HEADER = "Problema; n; K; m; z; S; Tiempo; Nodos generados;";
 
     private MaximumDiversitySet bestFound;
     private BABTree tree;
-    private int exploreStrategy, solutionSize;
+    private String exploreStrategy;
+    private int solutionSize;
     private HashSet<BABNode> alreadyExpanded;
 
     /**
@@ -36,7 +45,7 @@ public class BranchAndBound {
      *                        BranchAndBound.SMALLER_SUPERIOR_QUOTE.
      * @return The MaximumDiversitySet with the final solution.
      */
-    public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, int algorithm, int exploreStrategy) {
+    public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, String algorithm, String exploreStrategy, boolean print) {
         clean();
         long initialTime = System.currentTimeMillis();
         this.exploreStrategy = exploreStrategy;
@@ -44,8 +53,6 @@ public class BranchAndBound {
         alreadyExpanded = new HashSet<>();
 
         initialQuota(problem, algorithm);
-        //System.out.println("INITIAL SOLUTION: ");
-        //problem.print();
         bestFound = problem;
 
         MaximumDiversitySet startingSet = new MaximumDiversitySet(problem);
@@ -55,7 +62,10 @@ public class BranchAndBound {
         tree = new BABTree(startingSet);
         branchOut(tree.getOrigin());
         long finalTime = System.currentTimeMillis();
-        System.out.print("Necessary time: " + (finalTime - initialTime) + " milliseconds");
+
+        if (print)
+            writeOutput(algorithm, finalTime - initialTime);
+
         return new MaximumDiversitySet(bestFound);
     }
 
@@ -64,7 +74,6 @@ public class BranchAndBound {
      * @param set
      */
     public void branchOut(BABNode set) {
-        alreadyExpanded.add(set);
         if (set.getSet().solutionSize() != solutionSize) {
             set.generateSons();
             if (exploreStrategy == DEPTH_FIRST)
@@ -114,8 +123,10 @@ public class BranchAndBound {
      */
     private void exploreDepthFirst(BABNode currentNode) {
         for (BABNode son : currentNode.getLinks()) {
-            if (worthy(son))
+            if (worthy(son)) {
+                alreadyExpanded.add(son);
                 branchOut(son);
+            }
         }
     }
 
@@ -135,8 +146,10 @@ public class BranchAndBound {
                 }
             }
             if (index != -1) {
-                if (worthy(currentNode.getLinks().get(index)))
+                if (worthy(currentNode.getLinks().get(index))) {
+                    alreadyExpanded.add(currentNode.getLinks().get(index));
                     branchOut(currentNode.getLinks().get(index));
+                }
                 branched.add(index);
             }
         }
@@ -147,7 +160,7 @@ public class BranchAndBound {
      * @param problem
      * @param algorithm
      */
-    private void initialQuota(MaximumDiversitySet problem, int algorithm) throws IllegalArgumentException {
+    private void initialQuota(MaximumDiversitySet problem, String algorithm) throws IllegalArgumentException {
         if (algorithm == GREEDY_CONSTRUCTIVE) {
             GreedyConstructive greedy = new GreedyConstructive();
             greedy.solve(problem, solutionSize);
@@ -175,4 +188,44 @@ public class BranchAndBound {
             alreadyExpanded.clear();
         alreadyExpanded = null;
     }
+
+    /**
+     * This function writes the results of the algorithm in an output file.
+     * It appends the new content. This output file is a csv file.
+     * @param usedAlgorithm The algorithm use to generate the initial lower quote.
+     */
+    private void writeOutput(String usedAlgorithm, long time) {
+        BufferedWriter outputFile = null;
+        File file = null;
+        try {
+            boolean header = true;
+            file = new File(OUTPUT_FILE + usedAlgorithm + exploreStrategy + OUTPUT_FILE_EXTENSION);
+            if ((file.exists()) && (!file.isDirectory())) {
+                header = false;
+                outputFile = new BufferedWriter(new FileWriter(OUTPUT_FILE + usedAlgorithm
+                        + exploreStrategy + OUTPUT_FILE_EXTENSION, true));
+            } else
+                outputFile = new BufferedWriter(new FileWriter(OUTPUT_FILE + usedAlgorithm
+                        + exploreStrategy + OUTPUT_FILE_EXTENSION));
+            String solution = bestFound.printSolution();
+            if (header)
+                outputFile.write(FILE_HEADER + "\n");
+            outputFile.write(bestFound.getFilename() + "; " + bestFound.getSet().size() + "; ");
+            outputFile.write(bestFound.getElementSize() + "; " + bestFound.solutionSize() + "; ");
+            outputFile.write(bestFound.diversity() + "; " + solution + "; ");
+            outputFile.write(time + "; " + alreadyExpanded.size() + ";");
+            outputFile.newLine();
+        } catch(IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (outputFile != null)
+                    outputFile.close();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
