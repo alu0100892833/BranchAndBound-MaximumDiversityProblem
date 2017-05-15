@@ -260,10 +260,10 @@ public class MaximumDiversitySet {
     }
 
     /**
-     * Returns the superior quote for the actual state.
-     * @return The superior quote value.
+     * Returns the upper bound for the actual state.
+     * @return The upper bound value.
      */
-    public double superiorQuote(int solutionSize) {
+    public double upperBound(int solutionSize) {
         MaximumDiversitySet copy = new MaximumDiversitySet(this);
         GreedyConstructive greedy = new GreedyConstructive();
         greedy.solve(copy, solutionSize);
@@ -354,7 +354,7 @@ public class MaximumDiversitySet {
 
     /**
      * Alters the solution to be equal to the given by other MaximumDiversitySet.
-     * @param other
+     * @param other The alternative MaximumDiversitySet whose solution is going to be copied.
      */
     public void setAs(MaximumDiversitySet other) {
         if (other.getSet().equals(getSet()))
@@ -366,9 +366,7 @@ public class MaximumDiversitySet {
         if (!(obj instanceof MaximumDiversitySet))
             return false;
         MaximumDiversitySet otherSet = (MaximumDiversitySet) obj;
-        if ((getSolution().equals(otherSet.getSolution())) && (getSet().equals(otherSet.getSet())))
-            return true;
-        return false;
+        return ((getSolution().equals(otherSet.getSolution())) && (getSet().equals(otherSet.getSet())));
     }
 
     /**

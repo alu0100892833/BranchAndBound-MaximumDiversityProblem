@@ -22,7 +22,7 @@ public class BranchAndBound {
     public static final String GREEDY_CONSTRUCTIVE = "GreedyConstructive";
     public static final String GREEDY_DESTRUCTIVE = "GreedyDestructive";
     public static final String DEPTH_FIRST = "DEPTH-FIRST";
-    public static final String SMALLEST_SUPERIOR_QUOTE = "SMALLEST-SUPERIOR-QUOTE";
+    public static final String SMALLEST_UB = "SMALL-UB";
     public static final String GRASP = "GRASP";
     private static final int GRASP_ITERATIONS = 10;
     private static final String OUTPUT_FILE = "results/BABResults";
@@ -32,16 +32,17 @@ public class BranchAndBound {
     private MaximumDiversitySet bestFound;
     private BABTree tree;
     private String exploreStrategy;
-    private int solutionSize, alreadyExpanded;
+    private int solutionSize;
+    private ArrayList<BABNode> alreadyExpanded;
 
     /**
      * This method solves the problem using a Branch and Bound algorithm.
      * @param problem Represents the problem to solve.
      * @param solutionSize Size of the solution.
-     * @param algorithm Specifies what algorithm to use for the initial lower quote. It should be BranchAndBound.GREEDY_CONSTRUCTIVE,
+     * @param algorithm Specifies what algorithm to use for the initial lower bound. It should be BranchAndBound.GREEDY_CONSTRUCTIVE,
      *                  BranchAndBound.GREEDY_DESTRUCTIVE or BranchAndBound.GRASP.
      * @param exploreStrategy Specifies the strategy for exploring the tree. It should be BranchAndBound.DEPTH_FIRST o
-     *                        BranchAndBound.SMALLER_SUPERIOR_QUOTE.
+     *                        BranchAndBound.SMALLER_UB.
      * @return The MaximumDiversitySet with the final solution.
      */
     public MaximumDiversitySet solve(MaximumDiversitySet problem, int solutionSize, String algorithm, String exploreStrategy, boolean print) {
@@ -50,9 +51,9 @@ public class BranchAndBound {
         this.exploreStrategy = exploreStrategy;
         this.solutionSize = solutionSize;
 
-        alreadyExpanded = 0;
+        alreadyExpanded = new ArrayList<>();
 
-        initialQuota(problem, algorithm);
+        initLowerBound(problem, algorithm);
         bestFound = problem;
 
         MaximumDiversitySet startingSet = new MaximumDiversitySet(problem);
@@ -74,13 +75,12 @@ public class BranchAndBound {
      * @param set The current node.
      */
     private void branchOut(BABNode set) {
-        alreadyExpanded++;
         if (set.getSet().solutionSize() != solutionSize) {
             set.generateSons();
             if (exploreStrategy.equals(DEPTH_FIRST))
                 exploreDepthFirst(set);
-            else if (exploreStrategy.equals(SMALLEST_SUPERIOR_QUOTE))
-                expandSmallerSuperiorQuote(set);
+            else if (exploreStrategy.equals(SMALLEST_UB))
+                expandSmallerUB(set);
 
         } else {
             if (bestFound.diversity() < set.getSet().diversity())
@@ -94,8 +94,8 @@ public class BranchAndBound {
      * @return True or false, if it is, or not, worth exploring.
      */
     private boolean worthy(BABNode node) {
-        if ((node.getFather() == null) || (node.getLevel() == 1))
-            return true;
+        if (alreadyExpanded.contains(node))
+            return false;
 
         int adding = -1;
         for (int i = 0; i < node.getSet().getSolution().size(); i++) {
@@ -113,7 +113,7 @@ public class BranchAndBound {
             }
         }
 
-        return (node.getSet().superiorQuote(solutionSize) >= bestFound.diversity());
+        return (node.getSet().upperBound(solutionSize) >= bestFound.diversity() - 0.08 * bestFound.diversity());
     }
 
     /**
@@ -123,7 +123,10 @@ public class BranchAndBound {
     private void exploreDepthFirst(BABNode currentNode) {
         for (BABNode son : currentNode.getLinks()) {
             if (worthy(son)) {
+                alreadyExpanded.add(son);
                 branchOut(son);
+            } else {
+                alreadyExpanded.add(son);
             }
         }
     }
@@ -132,22 +135,27 @@ public class BranchAndBound {
      * Continue exploring using the node with the highest diversity as preferred.
      * @param currentNode The current node
      */
-    private void expandSmallerSuperiorQuote(BABNode currentNode) {
+    private void expandSmallerUB(BABNode currentNode) {
         ArrayList<Integer> branched = new ArrayList<>();
         while (branched.size() != currentNode.getLinks().size()) {
             double lowestValue = Double.POSITIVE_INFINITY;
             int index = -1;
             for (int i = 0; i < currentNode.getLinks().size(); i++) {
                 if ((!branched.contains(i))
-                        && (currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize) < lowestValue)) {
-                    lowestValue = currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize);
+                        && (currentNode.getLinks().get(i).getSet().upperBound(solutionSize) < lowestValue)) {
+                    lowestValue = currentNode.getLinks().get(i).getSet().upperBound(solutionSize);
                     index = i;
                 }
             }
-            if (index != -1) {
+
+            if (alreadyExpanded.contains(currentNode.getLinks().get(index)))
+                branched.add(index);
+            else if (index != -1) {
                 if (worthy(currentNode.getLinks().get(index))) {
+                    alreadyExpanded.add(currentNode.getLinks().get(index));
                     branchOut(currentNode.getLinks().get(index));
-                }
+                } else
+                    alreadyExpanded.add(currentNode.getLinks().get(index));
                 branched.add(index);
             }
         }
@@ -155,10 +163,10 @@ public class BranchAndBound {
 
     /**
      * Creates an initial quota using the specified algorithm.
-     * @param problem
-     * @param algorithm
+     * @param problem The problem to init the lower bound for.
+     * @param algorithm The algorithm that is going to be used to generate the lower bound.
      */
-    private void initialQuota(MaximumDiversitySet problem, String algorithm) throws IllegalArgumentException {
+    private void initLowerBound(MaximumDiversitySet problem, String algorithm) throws IllegalArgumentException {
         if (algorithm.equals(GREEDY_CONSTRUCTIVE)) {
             GreedyConstructive greedy = new GreedyConstructive();
             greedy.solve(problem, solutionSize);
@@ -182,13 +190,16 @@ public class BranchAndBound {
         if (tree != null)
             tree.clear();
         tree = null;
-        alreadyExpanded = 0;
+        if (alreadyExpanded != null) {
+            alreadyExpanded.clear();
+            alreadyExpanded = null;
+        }
     }
 
     /**
      * This function writes the results of the algorithm in an output file.
      * It appends the new content. This output file is a csv file.
-     * @param usedAlgorithm The algorithm use to generate the initial lower quote.
+     * @param usedAlgorithm The algorithm use to generate the initial lower bound.
      */
     private void writeOutput(String usedAlgorithm, long time) {
         BufferedWriter outputFile = null;
@@ -210,7 +221,7 @@ public class BranchAndBound {
             outputFile.write(bestFound.getElementSize() + "; " + bestFound.solutionSize() + "; ");
             outputFile.write(Double.toString(bestFound.diversity()).replaceAll("[.]", ",") + "; "
                     + solution + "; ");
-            outputFile.write(time + "; " + alreadyExpanded + ";");
+            outputFile.write(time + "; " + (alreadyExpanded.size() + 1) + ";");
             outputFile.newLine();
         } catch(IOException e) {
             e.printStackTrace();
