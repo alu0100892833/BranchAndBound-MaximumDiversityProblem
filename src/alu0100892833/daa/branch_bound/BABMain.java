@@ -15,7 +15,7 @@ public class BABMain {
             MaximumDiversitySet problem = new MaximumDiversitySet(file);
             for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
                 BranchAndBound bab = new BranchAndBound();
-                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GREEDY_CONSTRUCTIVE,
+                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GREEDY_DESTRUCTIVE,
                         BranchAndBound.SMALLEST_SUPERIOR_QUOTE, true);
                 result.print();
             }

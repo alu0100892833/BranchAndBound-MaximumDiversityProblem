@@ -2,23 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbb631a5-ea1f-4432-b01e-0205fe681199" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGRASPDEPTH-FIRST.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGRASPSMALLEST-SUPERIOR-QUOTE.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveDEPTH-FIRST.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveSMALLEST-SUPERIOR-QUOTE.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveDEPTH-FIRST.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveSMALLEST-SUPERIOR-QUOTE.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/BABMain.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/BABMain.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/Main.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/structures/BABNode.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/structures/BABNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.class" afterPath="$PROJECT_DIR$/out/production/BranchAndBound/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGRASPDEPTH-FIRST.csv" afterPath="$PROJECT_DIR$/results/BABResultsGRASPDEPTH-FIRST.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGRASPSMALLEST-SUPERIOR-QUOTE.csv" afterPath="$PROJECT_DIR$/results/BABResultsGRASPSMALLEST-SUPERIOR-QUOTE.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveDEPTH-FIRST.csv" afterPath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveDEPTH-FIRST.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveSMALLEST-SUPERIOR-QUOTE.csv" afterPath="$PROJECT_DIR$/results/BABResultsGreedyConstructiveSMALLEST-SUPERIOR-QUOTE.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveDEPTH-FIRST.csv" afterPath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveDEPTH-FIRST.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveSMALLEST-SUPERIOR-QUOTE.csv" afterPath="$PROJECT_DIR$/results/BABResultsGreedyDestructiveSMALLEST-SUPERIOR-QUOTE.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABNode.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" afterPath="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +30,8 @@
       <file leaf-file-name="BranchAndBound.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+            <state relative-caret-position="494">
+              <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,18 +42,8 @@
       <file leaf-file-name="GreedyConstructive.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaximumDiversitySet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1967">
-              <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -66,8 +52,8 @@
       <file leaf-file-name="BABMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="101" lean-forward="false" selection-start-line="17" selection-start-column="101" selection-end-line="17" selection-end-column="101" />
+            <state relative-caret-position="285">
+              <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,11 +87,11 @@
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/Node.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABTree.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyDestructive.java" />
-        <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/Grasp.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/BABNode.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java" />
+        <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java" />
         <option value="$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java" />
       </list>
@@ -678,7 +664,7 @@
       <workItem from="1494429457181" duration="7902000" />
       <workItem from="1494605951140" duration="7310000" />
       <workItem from="1494689081612" duration="4244000" />
-      <workItem from="1494846960095" duration="9216000" />
+      <workItem from="1494846960095" duration="11024000" />
     </task>
     <task id="LOCAL-00001" summary="Started (and finished?) the Greedy Constructive Algorithm class.">
       <created>1494159937734</created>
@@ -771,31 +757,39 @@
       <option name="project" value="LOCAL" />
       <updated>1494618078472</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Granted good speed using Greedy Constructive for the superior quote.">
+      <created>1494865332327</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1494865332327</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56764000" />
+    <option name="totallyTimeSpent" value="58572000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32720232" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32669324" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8645418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23505977" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -831,7 +825,8 @@
     <MESSAGE value="Started the report." />
     <MESSAGE value="Setting two methods as deprecated, because they are not being used anymore." />
     <MESSAGE value="Have to export the Branch and Bound results automatically to a csv." />
-    <option name="LAST_COMMIT_MESSAGE" value="Have to export the Branch and Bound results automatically to a csv." />
+    <MESSAGE value="Granted good speed using Greedy Constructive for the superior quote." />
+    <option name="LAST_COMMIT_MESSAGE" value="Granted good speed using Greedy Constructive for the superior quote." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1208,34 +1203,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="78" column="45" lean-forward="false" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+        <state relative-caret-position="-332">
+          <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/structures/MaximumDiversitySet.java">
+    <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1967">
-          <caret line="271" column="0" lean-forward="false" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/GreedyConstructive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        <state relative-caret-position="165">
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/algorithms/BranchAndBound.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="42" lean-forward="false" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+        <state relative-caret-position="494">
+          <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1244,8 +1239,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/alu0100892833/daa/branch_bound/BABMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="101" lean-forward="false" selection-start-line="17" selection-start-column="101" selection-end-line="17" selection-end-column="101" />
+        <state relative-caret-position="285">
+          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

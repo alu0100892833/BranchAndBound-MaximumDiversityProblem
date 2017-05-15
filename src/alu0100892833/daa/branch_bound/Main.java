@@ -23,6 +23,7 @@ public class Main {
             long finalTime = System.nanoTime();
             System.out.println("Necessary time: " + (finalTime - initialTime) + " nanoseconds");
             System.out.println();
+            problem.reset();
         }*/
 
         System.out.println("==========================================");

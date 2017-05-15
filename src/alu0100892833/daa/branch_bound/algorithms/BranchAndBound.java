@@ -25,15 +25,14 @@ public class BranchAndBound {
     public static final String SMALLEST_SUPERIOR_QUOTE = "SMALLEST-SUPERIOR-QUOTE";
     public static final String GRASP = "GRASP";
     private static final int GRASP_ITERATIONS = 10;
-    private static final String OUTPUT_FILE = "BABResults";
+    private static final String OUTPUT_FILE = "results/BABResults";
     private static final String OUTPUT_FILE_EXTENSION = ".csv";
     private static final String FILE_HEADER = "Problema; n; K; m; z; S; Tiempo; Nodos generados;";
 
     private MaximumDiversitySet bestFound;
     private BABTree tree;
     private String exploreStrategy;
-    private int solutionSize;
-    private ArrayList<BABNode> alreadyExpanded;
+    private int solutionSize, alreadyExpanded;
 
     /**
      * This method solves the problem using a Branch and Bound algorithm.
@@ -51,7 +50,7 @@ public class BranchAndBound {
         this.exploreStrategy = exploreStrategy;
         this.solutionSize = solutionSize;
 
-        alreadyExpanded = new ArrayList<>();
+        alreadyExpanded = 0;
 
         initialQuota(problem, algorithm);
         bestFound = problem;
@@ -75,6 +74,7 @@ public class BranchAndBound {
      * @param set The current node.
      */
     private void branchOut(BABNode set) {
+        alreadyExpanded++;
         if (set.getSet().solutionSize() != solutionSize) {
             set.generateSons();
             if (exploreStrategy.equals(DEPTH_FIRST))
@@ -94,9 +94,7 @@ public class BranchAndBound {
      * @return True or false, if it is, or not, worth exploring.
      */
     private boolean worthy(BABNode node) {
-        if (alreadyExpanded.contains(node))
-            return false;
-        if (node.getFather() == null)
+        if ((node.getFather() == null) || (node.getLevel() == 1))
             return true;
 
         int adding = -1;
@@ -125,7 +123,6 @@ public class BranchAndBound {
     private void exploreDepthFirst(BABNode currentNode) {
         for (BABNode son : currentNode.getLinks()) {
             if (worthy(son)) {
-                alreadyExpanded.add(0, son);
                 branchOut(son);
             }
         }
@@ -138,17 +135,17 @@ public class BranchAndBound {
     private void expandSmallerSuperiorQuote(BABNode currentNode) {
         ArrayList<Integer> branched = new ArrayList<>();
         while (branched.size() != currentNode.getLinks().size()) {
-            double highestValue = Double.NEGATIVE_INFINITY;
+            double lowestValue = Double.POSITIVE_INFINITY;
             int index = -1;
             for (int i = 0; i < currentNode.getLinks().size(); i++) {
-                if ((!branched.contains(i)) && (currentNode.getLinks().get(i).getSet().diversity() > highestValue)) {
-                    highestValue = currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize);
+                if ((!branched.contains(i))
+                        && (currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize) < lowestValue)) {
+                    lowestValue = currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize);
                     index = i;
                 }
             }
             if (index != -1) {
                 if (worthy(currentNode.getLinks().get(index))) {
-                    alreadyExpanded.add(0, currentNode.getLinks().get(index));
                     branchOut(currentNode.getLinks().get(index));
                 }
                 branched.add(index);
@@ -185,9 +182,7 @@ public class BranchAndBound {
         if (tree != null)
             tree.clear();
         tree = null;
-        if (alreadyExpanded != null)
-            alreadyExpanded.clear();
-        alreadyExpanded = null;
+        alreadyExpanded = 0;
     }
 
     /**
@@ -213,8 +208,9 @@ public class BranchAndBound {
                 outputFile.write(FILE_HEADER + "\n");
             outputFile.write(bestFound.getFilename() + "; " + bestFound.getSet().size() + "; ");
             outputFile.write(bestFound.getElementSize() + "; " + bestFound.solutionSize() + "; ");
-            outputFile.write(bestFound.diversity() + "; " + solution + "; ");
-            outputFile.write(time + "; " + alreadyExpanded.size() + ";");
+            outputFile.write(Double.toString(bestFound.diversity()).replaceAll("[.]", ",") + "; "
+                    + solution + "; ");
+            outputFile.write(time + "; " + alreadyExpanded + ";");
             outputFile.newLine();
         } catch(IOException e) {
             e.printStackTrace();
