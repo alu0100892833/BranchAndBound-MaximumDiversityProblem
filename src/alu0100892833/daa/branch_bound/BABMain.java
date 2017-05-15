@@ -11,18 +11,14 @@ public class BABMain {
         int minSolutionSize = 2;
         int maxSolutionSize = 5;
 
-        for (int file = 0; file < args.length; file++) {
-            MaximumDiversitySet problem = new MaximumDiversitySet(args[file]);
-
+        for (String file : args) {
+            MaximumDiversitySet problem = new MaximumDiversitySet(file);
             for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
                 BranchAndBound bab = new BranchAndBound();
-                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GRASP, BranchAndBound.DEPTH_FIRST, true);
+                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GREEDY_CONSTRUCTIVE,
+                        BranchAndBound.SMALLEST_SUPERIOR_QUOTE, true);
                 result.print();
             }
         }
-
-        //BranchAndBound bab = new BranchAndBound();
-        //MaximumDiversitySet result = bab.solve(problem, 5, BranchAndBound.GREEDY_DESTRUCTIVE, BranchAndBound.DEPTH_FIRST);
-        //result.print();
     }
 }

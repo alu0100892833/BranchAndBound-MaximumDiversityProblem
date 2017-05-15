@@ -11,6 +11,7 @@ public class BABNode {
     private MaximumDiversitySet set;
     private BABNode father;
     private List<BABNode> links;
+    private int level;
 
     /**
      * Constructor for a node with no father.
@@ -20,22 +21,24 @@ public class BABNode {
         this.set = set;
         this.father = null;
         this.links = new ArrayList<>();
+        this.level = 0;
     }
 
     /**
      * Constructor for a node with a father.
-     * @param set
-     * @param father
+     * @param set The MaximumDiversitySet for the node.
+     * @param father The node father.
      */
     public BABNode(MaximumDiversitySet set, BABNode father) {
         this.set = set;
         this.father = father;
         this.links = new ArrayList<>();
+        this.level = father.getLevel() + 1;
     }
 
-    /*public void addLink(BABNode son) {
-        links.add(son);
-    }*/
+    public int getLevel() {
+        return level;
+    }
 
     /**
      * Returns all links to son nodes.
@@ -94,7 +97,7 @@ public class BABNode {
     /**
      * Clears all saved memory for the node.
      */
-    public void clear() {
+    void clear() {
         set.reset();
         set = null;
         father = null;

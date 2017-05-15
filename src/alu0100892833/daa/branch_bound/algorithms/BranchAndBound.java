@@ -9,7 +9,7 @@ import java.io.File;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
  * This class has all necessary methods to solve a Maximum Diversity problem using a Branch and Bound algorithms.
@@ -33,7 +33,7 @@ public class BranchAndBound {
     private BABTree tree;
     private String exploreStrategy;
     private int solutionSize;
-    private HashSet<BABNode> alreadyExpanded;
+    private ArrayList<BABNode> alreadyExpanded;
 
     /**
      * This method solves the problem using a Branch and Bound algorithm.
@@ -50,7 +50,8 @@ public class BranchAndBound {
         long initialTime = System.currentTimeMillis();
         this.exploreStrategy = exploreStrategy;
         this.solutionSize = solutionSize;
-        alreadyExpanded = new HashSet<>();
+
+        alreadyExpanded = new ArrayList<>();
 
         initialQuota(problem, algorithm);
         bestFound = problem;
@@ -71,15 +72,15 @@ public class BranchAndBound {
 
     /**
      * Branches out the given node, and explores its sons, grand-sons...
-     * @param set
+     * @param set The current node.
      */
-    public void branchOut(BABNode set) {
+    private void branchOut(BABNode set) {
         if (set.getSet().solutionSize() != solutionSize) {
             set.generateSons();
-            if (exploreStrategy == DEPTH_FIRST)
+            if (exploreStrategy.equals(DEPTH_FIRST))
                 exploreDepthFirst(set);
-            else if (exploreStrategy == SMALLEST_SUPERIOR_QUOTE)
-                exploreByHighestValue(set);
+            else if (exploreStrategy.equals(SMALLEST_SUPERIOR_QUOTE))
+                expandSmallerSuperiorQuote(set);
 
         } else {
             if (bestFound.diversity() < set.getSet().diversity())
@@ -89,13 +90,13 @@ public class BranchAndBound {
 
     /**
      * Check if a node is worth branching. If it has already been visited, it is not worthy.
-     * @param node
+     * @param node The current node.
      * @return True or false, if it is, or not, worth exploring.
      */
-    public boolean worthy(BABNode node) {
+    private boolean worthy(BABNode node) {
         if (alreadyExpanded.contains(node))
             return false;
-        else if (node.getFather() == null)
+        if (node.getFather() == null)
             return true;
 
         int adding = -1;
@@ -114,17 +115,17 @@ public class BranchAndBound {
             }
         }
 
-        return true;
+        return (node.getSet().superiorQuote(solutionSize) >= bestFound.diversity());
     }
 
     /**
      * Continue exploring a node with depth first method.
-     * @param currentNode
+     * @param currentNode The current node
      */
     private void exploreDepthFirst(BABNode currentNode) {
         for (BABNode son : currentNode.getLinks()) {
             if (worthy(son)) {
-                alreadyExpanded.add(son);
+                alreadyExpanded.add(0, son);
                 branchOut(son);
             }
         }
@@ -132,22 +133,22 @@ public class BranchAndBound {
 
     /**
      * Continue exploring using the node with the highest diversity as preferred.
-     * @param currentNode
+     * @param currentNode The current node
      */
-    private void exploreByHighestValue(BABNode currentNode) {
-        HashSet<Integer> branched = new HashSet<>();
+    private void expandSmallerSuperiorQuote(BABNode currentNode) {
+        ArrayList<Integer> branched = new ArrayList<>();
         while (branched.size() != currentNode.getLinks().size()) {
             double highestValue = Double.NEGATIVE_INFINITY;
             int index = -1;
             for (int i = 0; i < currentNode.getLinks().size(); i++) {
                 if ((!branched.contains(i)) && (currentNode.getLinks().get(i).getSet().diversity() > highestValue)) {
-                    highestValue = currentNode.getLinks().get(i).getSet().diversity();
+                    highestValue = currentNode.getLinks().get(i).getSet().superiorQuote(solutionSize);
                     index = i;
                 }
             }
             if (index != -1) {
                 if (worthy(currentNode.getLinks().get(index))) {
-                    alreadyExpanded.add(currentNode.getLinks().get(index));
+                    alreadyExpanded.add(0, currentNode.getLinks().get(index));
                     branchOut(currentNode.getLinks().get(index));
                 }
                 branched.add(index);
@@ -161,13 +162,13 @@ public class BranchAndBound {
      * @param algorithm
      */
     private void initialQuota(MaximumDiversitySet problem, String algorithm) throws IllegalArgumentException {
-        if (algorithm == GREEDY_CONSTRUCTIVE) {
+        if (algorithm.equals(GREEDY_CONSTRUCTIVE)) {
             GreedyConstructive greedy = new GreedyConstructive();
             greedy.solve(problem, solutionSize);
-        } else if (algorithm == GREEDY_DESTRUCTIVE) {
+        } else if (algorithm.equals(GREEDY_DESTRUCTIVE)) {
             GreedyDestructive greedy = new GreedyDestructive();
             greedy.solve(problem, solutionSize);
-        } else if (algorithm == GRASP) {
+        } else if (algorithm.equals(GRASP)) {
             Grasp grasp = new Grasp();
             grasp.solve(problem, solutionSize, GRASP_ITERATIONS);
         } else
@@ -177,7 +178,7 @@ public class BranchAndBound {
     /**
      * Cleans everything so we can start again or clean memory.
      */
-    public void clean() {
+    private void clean() {
         if (bestFound != null)
             bestFound.reset();
         bestFound = null;

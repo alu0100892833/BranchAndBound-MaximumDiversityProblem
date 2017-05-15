@@ -1,5 +1,6 @@
 package alu0100892833.daa.branch_bound.structures;
 
+import alu0100892833.daa.branch_bound.algorithms.GreedyConstructive;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.BufferedReader;
@@ -256,6 +257,17 @@ public class MaximumDiversitySet {
             }
         }
         return diversity;
+    }
+
+    /**
+     * Returns the superior quote for the actual state.
+     * @return The superior quote value.
+     */
+    public double superiorQuote(int solutionSize) {
+        MaximumDiversitySet copy = new MaximumDiversitySet(this);
+        GreedyConstructive greedy = new GreedyConstructive();
+        greedy.solve(copy, solutionSize);
+        return copy.diversity();
     }
 
     /**
