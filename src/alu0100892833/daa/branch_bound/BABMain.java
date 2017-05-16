@@ -15,8 +15,8 @@ public class BABMain {
             MaximumDiversitySet problem = new MaximumDiversitySet(file);
             for (int i = minSolutionSize; i <= maxSolutionSize; i++) {
                 BranchAndBound bab = new BranchAndBound();
-                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GRASP,
-                        BranchAndBound.SMALLEST_UB, true);
+                MaximumDiversitySet result = bab.solve(problem, i, BranchAndBound.GREEDY_CONSTRUCTIVE,
+                        BranchAndBound.SECOND_BEST_NODE, true);
                 result.print();
             }
         }

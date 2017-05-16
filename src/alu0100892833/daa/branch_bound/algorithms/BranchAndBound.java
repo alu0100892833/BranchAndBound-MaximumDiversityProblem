@@ -22,6 +22,7 @@ public class BranchAndBound {
     public static final String GREEDY_CONSTRUCTIVE = "GreedyConstructive";
     public static final String GREEDY_DESTRUCTIVE = "GreedyDestructive";
     public static final String DEPTH_FIRST = "DEPTH-FIRST";
+    public static final String SECOND_BEST_NODE = "SECOND-BEST";
     public static final String SMALLEST_UB = "SMALL-UB";
     public static final String GRASP = "GRASP";
     private static final int GRASP_ITERATIONS = 10;
@@ -81,10 +82,32 @@ public class BranchAndBound {
                 exploreDepthFirst(set);
             else if (exploreStrategy.equals(SMALLEST_UB))
                 expandSmallerUB(set);
+            else if (exploreStrategy.equals(SECOND_BEST_NODE))
+                branchSecondBest(set);
 
         } else {
             if (bestFound.diversity() < set.getSet().diversity())
                 bestFound = set.getSet();
+        }
+    }
+
+    /**
+     * Branches a certain son of the given node, specified by the index.
+     * It must be also added the the branched ArrayList.
+     * @param currentNode The current node, father of the candidates to be expanded.
+     * @param index The index of the son that is been chosen to be expanded.
+     * @param branched This ArrayList maintains all those sons already expanded or discarded.
+     */
+    private void branchIndex(BABNode currentNode, int index, ArrayList<Integer> branched) {
+        if (alreadyExpanded.contains(currentNode.getLinks().get(index))) {
+            branched.add(index);
+        } else if (index != -1) {
+            if (worthy(currentNode.getLinks().get(index))) {
+                alreadyExpanded.add(currentNode.getLinks().get(index));
+                branchOut(currentNode.getLinks().get(index));
+            } else
+                alreadyExpanded.add(currentNode.getLinks().get(index));
+            branched.add(index);
         }
     }
 
@@ -148,16 +171,7 @@ public class BranchAndBound {
                 }
             }
 
-            if (alreadyExpanded.contains(currentNode.getLinks().get(index)))
-                branched.add(index);
-            else if (index != -1) {
-                if (worthy(currentNode.getLinks().get(index))) {
-                    alreadyExpanded.add(currentNode.getLinks().get(index));
-                    branchOut(currentNode.getLinks().get(index));
-                } else
-                    alreadyExpanded.add(currentNode.getLinks().get(index));
-                branched.add(index);
-            }
+            branchIndex(currentNode, index, branched);
         }
     }
 
@@ -235,5 +249,48 @@ public class BranchAndBound {
         }
     }
 
+
+
+
+
+
+
+
+
+     //// MODIFICATION CODE
+
+    /**
+     * NEW METHOD FROM THE MODIFICATION. EXPLORES THE TREE EXPANDING ALWAYS THE SECOND BEST NODE.
+     * @param currentNode The current node, father of the candidates to be expanded.
+     */
+    private void branchSecondBest(BABNode currentNode) {
+        ArrayList<Integer> branched = new ArrayList<>();
+        while (branched.size() != currentNode.getLinks().size()) {
+            int best = -1;
+            int secondBest = -1;
+            double bestValue = 0.0;
+            double secondBestValue = 0.0;
+            for (int i = 0; i < currentNode.getLinks().size(); i++) {
+                if (!branched.contains(i) && (currentNode.getLinks().get(i).getSet().upperBound(solutionSize) > secondBestValue)) {
+                    if (currentNode.getLinks().get(i).getSet().upperBound(solutionSize) > bestValue) {
+                        secondBestValue = bestValue;
+                        secondBest = best;
+                        bestValue = currentNode.getLinks().get(i).getSet().upperBound(solutionSize);
+                        best = i;
+                    } else {
+                        secondBest = i;
+                        secondBestValue = currentNode.getLinks().get(i).getSet().upperBound(solutionSize);
+                    }
+                }
+            }
+
+            int index = -1;
+            if (secondBest != -1)
+                index = secondBest;
+            else if (best != -1)
+                index = best;
+            branchIndex(currentNode, index, branched);
+        }
+    }
 
 }
